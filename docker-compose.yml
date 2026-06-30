@@ -1,0 +1,11 @@
+services:
+  web:
+    build: .
+    container_name: toko_sepatu_app
+    volumes:
+      - .:/app
+    ports:
+      - "8001:8000"  # Memetakan port 8001 komputer lokal ke port 8000 di dalam kontainer
+    environment:
+      - TZ=Asia/Makassar  # Set zona waktu sesuai contoh di video dosen
+    restart: always

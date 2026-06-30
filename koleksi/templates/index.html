@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KICKS.CO — Aesthetic Footwear Vault</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .serif-title { font-family: 'Playfair Display', serif; }
+        /* Warna navy Kustom */
+        .bg-navy { background-color: #0F172A; }
+        .text-navy { color: #0F172A; }
+        .border-navy { border-color: #0F172A; }
+        .hover\:bg-navy:hover { background-color: #020617; }
+    </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] min-h-screen selection:bg-[#DBEAFE] selection:text-[#0F172A]">
+
+    <nav class="border-b border-[#CBD5E1] backdrop-blur-md sticky top-0 z-50 bg-[#F8FAFC]/90">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="text-2xl font-extrabold tracking-tighter uppercase text-navy">Kicks<span class="text-[#3B82F6]">.co</span></a>
+            <div class="hidden md:flex items-center gap-8 font-semibold text-xs tracking-widest">
+                <a href="#" class="text-navy hover:text-[#3B82F6] transition-colors">HOME</a>
+                <a href="#koleksi" class="text-[#64748B] hover:text-navy transition-colors">NEW ARRIVALS</a>
+                <a href="#koleksi" class="text-[#64748B] hover:text-navy transition-colors">COLLECTIONS</a>
+            </div>
+            <div class="text-xs font-bold border border-[#94A3B8] px-5 py-2.5 rounded-full text-navy hover:bg-navy hover:text-[#F8FAFC] transition-all cursor-pointer tracking-wider">
+                BAG (0)
+            </div>
+        </div>
+    </nav>
+
+    <header class="max-w-7xl mx-auto px-6 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="space-y-6 lg:col-span-5">
+            <span class="text-xs font-bold tracking-widest uppercase text-[#2563EB]">// THE ART OF STEPPING</span>
+            <h1 class="text-5xl md:text-6xl font-normal tracking-tight text-navy leading-tight serif-title">
+                Soft tones. <br><span class="italic font-light text-[#1E3A8A]">Bold steps.</span>
+            </h1>
+            <p class="text-[#475569] max-w-sm text-sm leading-relaxed">
+               
+            </p>
+            <div class="pt-4">
+                <a href="#koleksi" class="inline-block bg-navy text-[#F8FAFC] px-8 py-4 font-bold text-xs tracking-widest uppercase rounded-sm hover:bg-[#020617] transition-all shadow-md shadow-[#0F172A]/10">
+                    BROWSE CATALOGUE ↓
+                </a>
+            </div>
+        </div>
+        <div class="lg:col-span-7 relative group overflow-hidden rounded-2xl bg-gradient-to-tr from-[#EFF6FF] to-[#DBEAFE] aspect-[4/3] flex items-center justify-center p-8 border border-[#CBD5E1]">
+            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=800" alt="Hero Shoe" class="w-2/3 object-contain drop-shadow-2xl transform group-hover:scale-105 transition-transform duration-700">
+        </div>
+    </header>
+
+    <main id="koleksi" class="max-w-7xl mx-auto px-6 py-20 border-t border-[#CBD5E1]">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+            <div>
+                <span class="text-xs font-bold text-[#2563EB] tracking-widest uppercase">// AUTUMN PALETTE</span>
+                <h2 class="text-3xl font-normal tracking-wide text-navy serif-title mt-1">THE NAVY DROPS</h2>
+            </div>
+            <p class="text-[#64748B] text-xs max-w-xs leading-relaxed">.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for sepatu in sepatu_list %}
+            <div class="group bg-[#FFFFFF] border border-[#E2E8F0] rounded-xl overflow-hidden flex flex-col justify-between p-5 hover:border-[#3B82F6] hover:shadow-xl hover:shadow-[#0F172A]/5 transition-all duration-300">
+                <div class="bg-gradient-to-b from-[#F8FAFC] to-[#EFF6FF] rounded-lg aspect-square overflow-hidden flex items-center justify-center p-6 relative">
+                    <span class="absolute top-4 left-4 bg-[#DBEAFE] text-navy text-[10px] font-bold px-2.5 py-1 rounded-sm uppercase tracking-wider border border-[#BFDBFE]">
+                        {{ sepatu.kategori }}
+                    </span>
+                    <img src="{{ sepatu.gambar }}" alt="{{ sepatu.nama }}" class="w-4/5 h-4/5 object-contain mix-blend-multiply transform group-hover:scale-110 group-hover:-rotate-2 transition-transform duration-500">
+                </div>
+                
+                <div class="mt-6 space-y-2 px-1">
+                    <h3 class="text-lg font-bold tracking-tight text-navy">{{ sepatu.nama }}</h3>
+                    <p class="text-[#1E3A8A] font-semibold text-sm">{{ sepatu.harga }}</p>
+                </div>
+
+                <div class="mt-6">
+                    <a href="{% url 'detail' sepatu.id %}" class="block w-full text-center bg-[#EFF6FF] text-navy font-bold py-3.5 text-xs tracking-widest uppercase rounded-md border border-[#BFDBFE] hover:bg-navy hover:text-[#F8FAFC] hover:border-navy transition-all duration-300">
+                        VIEW PIECE →
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer class="border-t border-[#CBD5E1] py-12 bg-[#F1F5F9] text-center text-xs text-[#64748B] tracking-wide">
+        <p>© 2026 KICKS.CO — AESTHETIC STUDIO BY CARAMELLDDD. BUILT WITH DJANGO & DOCKER.</p>
+    </footer>
+
+</body>
+</html>

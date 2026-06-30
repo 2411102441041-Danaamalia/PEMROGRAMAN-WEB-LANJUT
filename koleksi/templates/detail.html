@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ sepatu.nama }} — KICKS.CO</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .serif-title { font-family: 'Playfair Display', serif; }
+        /* Warna Mahogany Kustom */
+        .bg-navy { background-color: #0F172A; }
+        .text-navy { color: #0F172A; }
+        .border-navy { border-color: #0F172A; }
+    </style>
+</head>
+<body class="bg-[#F8FAFC] text-[#1E293B] min-h-screen">
+
+    <nav class="border-b border-[#CBD5E1] bg-[#F8FAFC]">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center">
+            <a href="{% url 'index' %}" class="text-xs font-bold tracking-widest text-[#64748B] hover:text-navy transition-colors">← RETURN TO ART CATALOGUE</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 py-12 md:py-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-6 bg-gradient-to-tr from-[#F8FAFC] via-[#EFF6FF] to-[#DBEAFE] rounded-2xl aspect-square flex items-center justify-center p-12 border border-[#CBD5E1] shadow-inner">
+            <img src="{{ sepatu.gambar }}" alt="{{ sepatu.nama }}" class="w-11/12 h-11/12 object-contain mix-blend-multiply drop-shadow-xl">
+        </div>
+
+        <div class="lg:col-span-6 flex flex-col justify-between space-y-8 lg:pl-6">
+            <div class="space-y-4">
+                <span class="text-xs font-bold text-[#3B82F6] tracking-widest uppercase">// ESSENTIAL SPECIFICATION</span>
+                <h1 class="text-4xl md:text-5xl font-normal tracking-tight text-navy serif-title leading-tight">{{ sepatu.nama }}</h1>
+                <p class="text-xl font-bold text-[#1E3A8A]">{{ sepatu.harga }}</p>
+                <p class="text-[#475569] text-sm leading-relaxed pt-4 border-t border-[#CBD5E1]">
+                    {{ sepatu.deskripsi }}
+                </p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="flex justify-between items-center text-xs font-bold text-[#64748B] tracking-wider">
+                    <span>AVAILABLE SIZE (EU)</span>
+                    <span class="text-[#94A3B8]">VAULT STOCK: {{ sepatu.stok }}</span>
+                </div>
+                <div class="grid grid-cols-4 gap-2">
+                    {% for size in sepatu.ukuran %}
+                    <button class="border border-[#CBD5E1] bg-[#FFFFFF] py-3.5 text-xs font-bold text-navy rounded-md hover:border-navy focus:bg-navy focus:text-[#F8FAFC] focus:border-navy transition-all cursor-pointer">
+                        {{ size }}
+                    </button>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="pt-4">
+                <button onclick="alert('Berhasil ditambahkan ke keranjang estetik Anda!')" class="w-full bg-navy text-[#F8FAFC] font-bold py-4 text-xs tracking-widest uppercase rounded-md hover:bg-[#020617] transition-all duration-300 shadow-lg shadow-[#0F172A]/10 cursor-pointer">
+                    CLAIM THIS PIECE — {{ sepatu.harga }}
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="border-t border-[#CBD5E1] py-12 text-center text-xs text-[#64748B] mt-20">
+        <p>© 2026 KICKS.CO — INDIVIDU PROJECT DEPLOYMENT VISUAL BY CARAMELLDDD</p>
+    </footer>
+
+</body>
+</html>
